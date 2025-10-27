@@ -27,9 +27,9 @@ It can be used as:
 
 ## 🛠️ Tech Stack
 
-- **Language:** [Your language here, e.g. JavaScript / Python / Java / Go]  
-- **Framework:** [e.g. Express.js / Flask / Spring Boot / FastAPI]  
-- **Database (optional):** [e.g. MongoDB / PostgreSQL / SQLite]  
+- **Language:** [Your language here, e.g. JavaScript / PHP / HTML / CSS]  
+- **Framework:** [ Laravel / Tailwindcss ]  
+- **Database (optional):** [e.g. MySQL ]  
 - **Tools:** [e.g. Postman, cURL for testing]  
 
 ---
