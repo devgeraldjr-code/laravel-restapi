@@ -8,13 +8,12 @@ use App\Models\User;
 use App\Http\Resources\v1\AuthCollection;
 use App\Http\Resources\v1\AuthResource;
 use App\Filters\v1\AuthFilter;
+use App\Http\Requests\v1\StoreAuthRequest;
 
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request)
     {
         $filter = new AuthFilter();
@@ -33,17 +32,13 @@ class AuthController extends Controller
         return new AuthCollection($users->appends($request->query()));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+  
+    public function store(StoreAuthRequest $request)
     {
-        //
+        return new AuthResource(User::create($request->validated()));
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(string $id)
     {
         $includeTodo = request()->query('includeTodo');
@@ -56,17 +51,13 @@ class AuthController extends Controller
         return new AuthResource($user);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id)
     {
         //
