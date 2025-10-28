@@ -9,6 +9,7 @@ use App\Http\Resources\v1\TodoResource;
 use App\Http\Resources\v1\TodoCollection;
 use App\Filters\v1\TodoFilter;
 use App\Http\Requests\v1\StoreTodoRequest;
+use App\Http\Requests\v1\UpdateTodoRequest;
 
 class TodoController extends Controller
 {
@@ -39,9 +40,11 @@ class TodoController extends Controller
         return new TodoResource($todo);
     }
 
-    public function update(Request $request, string $id)
+    public function update(UpdateTodoRequest $request, string $id)
     {
-        //
+        $todo = Todo::findOrFail($id);
+        $todo->update($request->validated());
+        return new TodoResource($todo);
     }
 
     public function destroy(string $id)
