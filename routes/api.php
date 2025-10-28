@@ -14,4 +14,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\Ver1'], function () {
     Route::apiResource('todos', TodoController::class);
     Route::apiResource('auth', AuthController::class);
+    Route::post('todos/bulk', [TodoController::class, 'bulkStore']);
 });

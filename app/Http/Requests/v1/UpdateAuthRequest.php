@@ -18,17 +18,17 @@ class UpdateAuthRequest extends FormRequest
         $method = $this->method();
         if($method == 'PUT'){
             return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name'                  => ['required', 'string', 'max:255'],
+            'email'                 => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password'              => ['required', 'string', 'min:8', 'confirmed'],
             'password_confirmation' => ['required', 'string', 'min:8'],
             ];
         }
         else{
             return [
-            'name' => ['sometimes', 'string', 'max:255'],
-            'email' => ['sometimes', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['sometimes', 'string', 'min:8', 'confirmed'],
+            'name'                  => ['sometimes', 'string', 'max:255'],
+            'email'                 => ['sometimes', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password'              => ['sometimes', 'string', 'min:8', 'confirmed'],
             'password_confirmation' => ['sometimes', 'string', 'min:8'],
             ];
         }

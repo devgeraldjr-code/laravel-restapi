@@ -10,6 +10,7 @@ use App\Http\Resources\v1\TodoCollection;
 use App\Filters\v1\TodoFilter;
 use App\Http\Requests\v1\StoreTodoRequest;
 use App\Http\Requests\v1\UpdateTodoRequest;
+use App\Http\Requests\v1\BulkStoreTodoRequest;
 
 class TodoController extends Controller
 {
@@ -50,5 +51,17 @@ class TodoController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function bulkStore(BulkStoreTodoRequest $request)
+    {
+        $todosData = $request->validated();
+        $createdTodos = [];
+
+        foreach ($todosData as $todoData) {
+            $createdTodos[] = Todo::create($todoData);
+        }
+
+        return TodoResource::collection(collect($createdTodos));
     }
 }
