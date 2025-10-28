@@ -12,11 +12,13 @@ class TodoResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'userId' => $this->user_id,
             'title' => $this->title,
             'description' => $this->description,
             'isCompleted' => $this->is_completed,
             'startDate' => $this->start_date,
             'dueDate' => $this->due_date,
+            
         ];
     }
 }

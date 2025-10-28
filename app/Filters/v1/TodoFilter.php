@@ -8,18 +8,22 @@ class TodoFilter extends ApiFilter
 {
     protected $allowedFilters = [
         'title' => ['lk'],
+        'userId' => ['lk','eq','ne','gt','lt','gte','lte'],
         'description' => ['lk'],
         'isCompleted' => ['lk','eq','ne','gt','lt','gte','lte'],
         'startDate' => ['lk','eq','ne','gt','lt','gte','lte'],
         'dueDate' => ['lk', 'eq', 'ne','gt','lt','gte','lte'],
+        
     ];
 
     protected $columnMap = [
         'title' => 'title',
+        'userId' => 'user_id',
         'description' => 'description',
         'isCompleted' => 'is_completed',
         'startDate' => 'start_date',
         'dueDate' => 'due_date',
+        
     ];
 
     protected $operatorMap = [

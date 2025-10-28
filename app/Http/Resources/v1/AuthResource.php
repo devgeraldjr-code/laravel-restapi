@@ -4,6 +4,7 @@ namespace App\Http\Resources\v1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\v1\TodoResource;
 
 class AuthResource extends JsonResource
 {
@@ -14,8 +15,7 @@ class AuthResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
+            'todo' => TodoResource::collection($this->whenLoaded('todo')),
         ];
     }
 }

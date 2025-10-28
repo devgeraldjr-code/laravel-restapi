@@ -15,13 +15,15 @@ class TodoController extends Controller
     public function index(Request $request)
     {
         $filter = new TodoFilter();
-        $queryItems = $filter->transform($request); // [['column', 'operator', 'value']]
+        $filterItems = $filter->transform($request); // [['column', 'operator', 'value']]
+        $includeUser = $request->query('includeUser');
+        $todos = Todo::where($filterItems)->paginate();
 
-        if (count($queryItems) == 0) {
-            return new TodoCollection(Todo::paginate());
+        if ($includeUser) {
+            $todo = $todos->with('user')->paginate();
+            return new TodoCollection($todo->appends($request->query()));
         }
-        $todo = Todo::where($queryItems)->paginate();
-        return new TodoCollection($todo->appends($request->query()));
+        return new TodoCollection($todos->appends($request->query()));
     
     }
 
