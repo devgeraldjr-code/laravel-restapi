@@ -9,6 +9,7 @@ use App\Http\Resources\v1\AuthCollection;
 use App\Http\Resources\v1\AuthResource;
 use App\Filters\v1\AuthFilter;
 use App\Http\Requests\v1\StoreAuthRequest;
+use App\Http\Requests\v1\UpdateAuthRequest;
 
 
 class AuthController extends Controller
@@ -52,9 +53,11 @@ class AuthController extends Controller
     }
 
     
-    public function update(Request $request, string $id)
+    public function update(UpdateAuthRequest $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->update($request->validated());
+        return new AuthResource($user);
     }
 
    
